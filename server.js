@@ -13,37 +13,46 @@ const client = new textToSpeech.TextToSpeechClient();
 let phrases = [];
 
 // Read the CSV file
-fs.createReadStream(path.join(__dirname, 'build/data/phrases.csv'))
-  .pipe(csv())
-  .on('data', (row) => {
-    // Manually handle the field names
-    const english = row['English'] ? row['English'].trim() : '';
-    const romanized = row[' Romanized'] ? row[' Romanized'].trim() : '';
-    const japanese = row[' Japanese'] ? row[' Japanese'].trim() : '';
+const csvFilePath = path.join(__dirname, 'build/data/phrases.csv');
+if (fs.existsSync(csvFilePath)) {
+  fs.createReadStream(csvFilePath)
+    .pipe(csv())
+    .on('data', (row) => {
+      // Manually handle the field names
+      const english = row['English'] ? row['English'].trim() : '';
+      const romanized = row[' Romanized'] ? row[' Romanized'].trim() : '';
+      const japanese = row[' Japanese'] ? row[' Japanese'].trim() : '';
 
-    if (japanese) {
-      phrases.push({
-        English: english,
-        Romanized: romanized,
-        Japanese: japanese
-      });
-    } else {
-      console.log('Missing Japanese field in row:', row);
-    }
-  })
-  .on('end', () => {
-    console.log('CSV file successfully processed');
-    console.log('Phrases:', phrases); // Log the loaded phrases for debugging
-  })
-  .on('error', (error) => {
-    console.error('Error reading CSV file:', error);
-  });
+      if (japanese) {
+        phrases.push({
+          English: english,
+          Romanized: romanized,
+          Japanese: japanese,
+        });
+      } else {
+        console.log('Missing Japanese field in row:', row);
+      }
+    })
+    .on('end', () => {
+      console.log('CSV file successfully processed');
+      console.log('Phrases:', phrases); // Log the loaded phrases for debugging
+    })
+    .on('error', (error) => {
+      console.error('Error reading CSV file:', error);
+    });
+} else {
+  console.error('CSV file does not exist:', csvFilePath);
+}
 
 app.use(express.static(path.join(__dirname, 'build')));
 app.use('/audio', express.static(path.join(__dirname, 'build/audio')));
 
 app.get('/phrases', (req, res) => {
-  res.json(phrases);
+  if (phrases.length > 0) {
+    res.json(phrases);
+  } else {
+    res.status(404).json({ error: 'No phrases found' });
+  }
 });
 
 app.get('/synthesize', async (req, res) => {
