@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     promptAudio.volume = 0.8; // Reduce volume by 20%
 
-    fetch('/data/phrases')
+    fetch('/phrases')
         .then(response => response.json())
         .then(data => {
             phrases = data;
