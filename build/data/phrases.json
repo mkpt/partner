@@ -1,0 +1,52 @@
+[
+  {
+    "English": "Hello",
+    "Romanized": "Konnichiwa",
+    "Japanese": "こんにちは"
+  },
+  {
+    "English": "Thank you",
+    "Romanized": "Arigatou gozaimasu",
+    "Japanese": "ありがとうございます"
+  },
+  {
+    "English": "I'm sorry",
+    "Romanized": "Sumimasen",
+    "Japanese": "すみません"
+  },
+  {
+    "English": "Yes",
+    "Romanized": "hai",
+    "Japanese": "はい"
+  },
+  {
+    "English": "No",
+    "Romanized": "iie",
+    "Japanese": "いいえ"
+  },
+  {
+    "English": "Nice to meet you",
+    "Romanized": "hajimemashite",
+    "Japanese": "はじめまして"
+  },
+  {
+    "English": "Goodbye",
+    "Romanized": "Sayounara",
+    "Japanese": "さようなら"
+  },
+  {
+    "English": "Delicious",
+    "Romanized": "oishii",
+    "Japanese": "美味しい"
+  },
+  {
+    "English": "Water please",
+    "Romanized": "o-mizu o onegai shimasu",
+    "Japanese": "お水をお願いします"
+  },
+  {
+    "English": "Check please",
+    "Romanized": "okaikei onegaishimasu",
+    "Japanese": "お会計 お願いします"
+  }
+]

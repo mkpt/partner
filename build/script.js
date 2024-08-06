@@ -17,10 +17,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     promptAudio.volume = 0.8; // Reduce volume by 20%
 
-    fetch('/phrases')
-        .then(response => response.json())
+    fetch('/data/phrases.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json();
+        })
         .then(data => {
             phrases = data;
+            console.log('Phrases fetched:', phrases); // Log the fetched phrases for debugging
         })
         .catch(error => {
             console.error('Error fetching phrases:', error);
