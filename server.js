@@ -13,7 +13,7 @@ const client = new textToSpeech.TextToSpeechClient();
 let phrases = [];
 
 // Read the CSV file
-fs.createReadStream('public/phrases.csv')
+fs.createReadStream('src/data/phrases.csv')
   .pipe(csv())
   .on('data', (row) => {
     // Manually handle the field names
@@ -36,7 +36,7 @@ fs.createReadStream('public/phrases.csv')
     console.log('Phrases:', phrases); // Log the loaded phrases for debugging
   });
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'src')));
 app.use('/audio', express.static(path.join(__dirname, 'audio')));
 
 app.get('/phrases', (req, res) => {
