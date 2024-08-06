@@ -13,7 +13,7 @@ const client = new textToSpeech.TextToSpeechClient();
 let phrases = [];
 
 // Read the CSV file
-fs.createReadStream('phrases.csv')
+fs.createReadStream('public/phrases.csv')
   .pipe(csv())
   .on('data', (row) => {
     // Manually handle the field names

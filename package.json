@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "build": "mkdir -p build && cp public/index.html public/script.js build/"
+    "build": "mkdir -p build && cp -r public/* public/audio/* build/"
   },
   "keywords": [],
   "author": "",
