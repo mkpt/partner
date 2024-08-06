@@ -31,13 +31,34 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      # Setup Node.js environment
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16' # Specify the Node.js version you need
+
+      # Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Build the site
+      - name: Build site
+        run: npm run build
+
+      # Ensure the CNAME file is included in the build output
+      - name: Add CNAME file
+        run: echo "steakplease.net" > ./build/CNAME
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
-          path: '.'
+          # Upload the built site
+          path: './build' # Adjust the path based on your build output directory
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
