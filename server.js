@@ -13,7 +13,7 @@ const client = new textToSpeech.TextToSpeechClient();
 let phrases = [];
 
 // Read the CSV file
-fs.createReadStream(path.join(__dirname, 'src/data/phrases.csv'))
+fs.createReadStream(path.join(__dirname, 'build/data/phrases.csv'))
   .pipe(csv())
   .on('data', (row) => {
     // Manually handle the field names
@@ -39,8 +39,8 @@ fs.createReadStream(path.join(__dirname, 'src/data/phrases.csv'))
     console.error('Error reading CSV file:', error);
   });
 
-app.use(express.static(path.join(__dirname, 'src')));
-app.use('/audio', express.static(path.join(__dirname, 'src/audio')));
+app.use(express.static(path.join(__dirname, 'build')));
+app.use('/audio', express.static(path.join(__dirname, 'build/audio')));
 
 app.get('/phrases', (req, res) => {
   res.json(phrases);
@@ -62,7 +62,7 @@ app.get('/synthesize', async (req, res) => {
   try {
     const [response] = await client.synthesizeSpeech(request);
     const writeFile = util.promisify(fs.writeFile);
-    const audioFilePath = path.join(__dirname, 'src/audio', `${languageCode}-${Date.now()}.mp3`);
+    const audioFilePath = path.join(__dirname, 'build/audio', `${languageCode}-${Date.now()}.mp3`);
     await writeFile(audioFilePath, response.audioContent, 'binary');
 
     res.json({ audioUrl: `/audio/${path.basename(audioFilePath)}` });
