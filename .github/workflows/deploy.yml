@@ -37,7 +37,7 @@ jobs:
         uses: actions/upload-pages-artifact@v1
         with:
           # Upload the built site
-          path: './build'  # Adjust the path based on your build output directory
+          path: './build/'  # Adjust the path based on your build output directory
 
       - name: Deploy to GitHub Pages
         id: deployment

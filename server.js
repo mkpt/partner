@@ -37,7 +37,7 @@ fs.createReadStream('src/data/phrases.csv')
   });
 
 app.use(express.static(path.join(__dirname, 'src')));
-app.use('/audio', express.static(path.join(__dirname, 'audio')));
+app.use('/audio', express.static(path.join(__dirname, 'src/audio')));
 
 app.get('/phrases', (req, res) => {
   res.json(phrases);
@@ -59,7 +59,7 @@ app.get('/synthesize', async (req, res) => {
   try {
     const [response] = await client.synthesizeSpeech(request);
     const writeFile = util.promisify(fs.writeFile);
-    const audioFilePath = path.join(__dirname, 'public/audio', `${languageCode}-${Date.now()}.mp3`);
+    const audioFilePath = path.join(__dirname, 'src/audio', `${languageCode}-${Date.now()}.mp3`);
     await writeFile(audioFilePath, response.audioContent, 'binary');
 
     res.json({ audioUrl: `/audio/${path.basename(audioFilePath)}` });
