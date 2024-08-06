@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Japanese Learning App</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <div id="phrase-container">
+            <p id="english-phrase" class="phrase"></p>
+            <p id="romanized-phrase" class="phrase"></p>
+            <hr id="separator" style="display: none;">
+            <div id="turn-container" style="display: none;">
+                <span id="my-turn" class="turn">&#9650;</span> <!-- Up Arrow -->
+                <span id="your-turn" class="turn">&#9660;</span> <!-- Down Arrow -->
+            </div>
+        </div>
+        <div id="space-to-continue-container">
+            <p id="space-to-continue">SPACE to continue</p>
+        </div>
+        <audio id="prompt-audio" src="/audio/prompt.mp3"></audio>
+        <button id="start-button">Start</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

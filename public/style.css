@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=DM+Sans:wght@400;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+#app {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-top: -10%; /* Move text up the page 10% */
+    position: relative; /* Ensure the positioning of child elements */
+}
+
+#phrase-container {
+    margin: 20px;
+    min-width: 400px;
+}
+
+.phrase {
+    font-size: 2.5em;
+    margin: 20px 0;
+}
+
+#turn-container {
+    display: flex;
+    justify-content: space-between;
+    font-size: 2em;
+    margin-top: 20px;
+    color: #696969; /* Medium gray color */
+    position: relative; /* Relative positioning to allow absolute positioning of SPACE to continue */
+}
+
+.turn {
+    flex: 1;
+    text-align: center;
+    border-radius: 2px;
+}
+
+.highlight {
+    color: #00A36C; /* Highlight color */
+}
+
+#separator {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: block; /* Always display */
+}
+
+#turn-container {
+    display: none; /* Initially hidden */
+}
+
+#space-to-continue-container {
+    position: absolute;
+    bottom: 25%; /* Move SPACE to continue further up the page */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#space-to-continue {
+    font-size: 1em; /* Normal size */
+    color: lightgray;
+    text-align: center;
+    display: none;
+}
+
+#start-button {
+    padding: 10px 20px;
+    font-size: 1.5em;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+}
